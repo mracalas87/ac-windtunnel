@@ -249,7 +249,19 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
 .rh-msg.warn { color: #ffd166; }
 .rh-start { position: absolute; left: 50%; top: 52%; transform: translateX(-50%); pointer-events: auto; text-shadow: none; }
 .rh-ctl { position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
-.rh-steer { display: flex; gap: 10px; }
+.rh-steer { display: flex; gap: 10px; align-items: flex-end; }
+.rh-pad { min-height: 84px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; border-radius: 10px 10px 18px 18px; }
+.rh-pad b { font: 700 36px/1 var(--display); }
+.rh-pad small { font: 600 11px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; opacity: .9; }
+.rh-pad.up { border-color: var(--accent); }
+.rev { position: absolute; left: 50%; bottom: 104px; transform: translateX(-50%); width: min(88%, 460px); display: flex; gap: 4px; pointer-events: none; }
+.rev i { flex: 1; height: 14px; border-radius: 3px; background: rgba(8,12,16,.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.rev i.on.g { background: #2dff82; } .rev i.on.a { background: #ffd166; } .rev i.on.r { background: #ff3b30; }
+.rev.shift i.on { background: #59a0ff; animation: revf .18s steps(2) infinite; }
+.rev.lim i.on { background: #ff3b30; animation: revf .12s steps(2) infinite; }
+@keyframes revf { 50% { opacity: .25; } }
+.rev-t { position: absolute; left: 0; right: 0; bottom: 124px; text-align: center; font: 700 18px/1 var(--display); letter-spacing: .2em; text-transform: uppercase; text-shadow: 0 1px 3px rgba(0,0,0,.6); pointer-events: none; }
+.rh-lights.bad i { background: #ff3b30; box-shadow: 0 0 22px #ff3b30; animation: revf .3s steps(2) infinite; }
 .rh-btn { pointer-events: auto; touch-action: none; user-select: none; -webkit-user-select: none; font: 700 22px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(8,12,16,.62); border: 1px solid rgba(255,255,255,.4); border-radius: 6px; min-width: 64px; min-height: 64px; cursor: pointer; text-shadow: none; }
 .rh-btn.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .rh-go { min-width: 130px; min-height: 76px; font-size: 24px; padding: 0 18px; white-space: nowrap; }
@@ -263,7 +275,7 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
 .rs-t { font: 700 16px/1 var(--display); letter-spacing: .16em; text-transform: uppercase; }
 .rs-s { font-size: 13px; color: var(--muted); }
 .rh-auto { pointer-events: auto; position: absolute; right: 16px; top: 28px; font: 600 12px/1 var(--display); letter-spacing: .12em; text-transform: uppercase; color: #fff; background: rgba(8,12,16,.55); border: 1px solid rgba(255,255,255,.35); border-radius: 4px; padding: 7px 10px; cursor: pointer; text-shadow: none; }
-@media (max-width: 600px) { .rh-go { min-width: 110px; font-size: 20px; white-space: normal; line-height: 1.05; } .rh-btn { min-width: 56px; } }
+@media (max-width: 600px) { .rh-top { gap: 12px !important; left: 10px !important; } .rh-top b { font-size: 28px !important; } .rh-l { font-size: 10px; letter-spacing: .12em; } .rh-u { font-size: 10px; } .speedo { width: 112px; right: 6px; top: 12px; } .sp-read b { font-size: 20px; } .rh-pad { min-width: 54px !important; } .rev { bottom: 98px; } .rev-t { bottom: 118px; font-size: 15px; } .rh-go { min-width: 110px; font-size: 20px; white-space: normal; line-height: 1.05; } .rh-btn { min-width: 56px; } }
 .race-after { display: flex; flex-direction: column; gap: 14px; }
 .rr-grid, #rStats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0 28px; }
 #rStats .tile .v { font-size: 40px; }
@@ -338,9 +350,9 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
     <div class="guide-body">
       <p>Does your design really go faster? Race it down the runway against the <b>standard design</b> of the same car. The standard car is the see-through box in the next lane.</p>
       <ol class="todo">
-        <li><b>Start.</b> Press Start race and wait for the lights to turn green.</li>
-        <li><b>Push.</b> Hold GO (or the space bar) to use the motor. Let go and the car coasts.</li>
-        <li><b>Steer gently.</b> Use the arrows. Turning wastes speed, so a straight line is fastest. Stay on the tarmac.</li>
+        <li><b>Wait for green.</b> Press Start race. Three red lights come on, then the light turns green at a random moment. Go early and it is a false start.</li>
+        <li><b>React.</b> Hold GO (or the space bar) the moment it turns green. Your reaction time is shown.</li>
+        <li><b>Shift.</b> Tap the + paddle (or the right arrow) just as the rev lights reach the end. Too early wastes power, too late hits the limiter. Use &minus; to drop a gear.</li>
       </ol>
       <p>Watch the <b>speedo</b> in the corner. The yellow mark is your design's predicted top speed. The faster you go, the harder the air pushes back, and the numbers under the race show it. A car with less drag keeps speeding up for longer.</p>
     <button class="btn go big guide-go" type="button" data-guide-close>Got it, let's race &rarr;</button>
@@ -354,7 +366,7 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
     <div class="how" aria-label="How it works">
       <div class="card"><div class="num">1</div><h2>Design</h2><p>Pick a car, paint every panel and reshape its body.</p></div>
       <div class="card"><div class="num">2</div><h2>Test</h2><p>Press Finish and test. Watch the air stream past your car in the wind tunnel.</p></div>
-      <div class="card"><div class="num">3</div><h2>Race</h2><p>Take your car to the runway. Hold the throttle and see if your design beats the standard car. Then tweak it and go again.</p></div>
+      <div class="card"><div class="num">3</div><h2>Race</h2><p>Take your car to the runway. React to the lights, shift through the gears and see if you beat the standard car. Then tweak the design and go again.</p></div>
     </div>
     <h2 class="sect-h">What you will learn</h2>
     <dl class="terms">
@@ -404,6 +416,7 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
           <div class="rh-top">
             <div><span class="rh-l">Time</span><b id="rTime">0.00</b><span class="rh-u">seconds</span></div>
             <div><span class="rh-l">Distance</span><b id="rDist">0</b><span class="rh-u">of <span id="rLen">0</span> m</span></div>
+            <div><span class="rh-l">Gear</span><b id="rGear">1</b><span class="rh-u">of <span id="rGears">0</span></span></div>
           </div>
           <div class="speedo" aria-label="Speedometer">
             <svg viewBox="0 0 200 200" aria-hidden="true">
@@ -419,9 +432,11 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
           <div class="rh-track"><i id="rBar"></i><i id="rGhost"></i></div>
           <div class="rh-lights" id="rLights"><i></i><i></i><i></i></div>
           <div class="rh-msg" id="rMsg"></div>
+          <div class="rev-t" id="rRevT"></div>
+          <div class="rev" id="rRev"></div>
           <button class="btn go big rh-start" id="rStart" type="button">Start race</button>
           <div class="rh-ctl">
-            <div class="rh-steer"><button class="rh-btn" id="rL" type="button" aria-label="Steer left">&#9664;</button><button class="rh-btn" id="rR" type="button" aria-label="Steer right">&#9654;</button></div>
+            <div class="rh-steer"><button class="rh-btn rh-pad" id="rDn" type="button" aria-label="Paddle: shift down"><b>&minus;</b><small>Down</small></button><button class="rh-btn rh-pad up" id="rUp" type="button" aria-label="Paddle: shift up"><b>+</b><small>Up</small></button></div>
             <button class="rh-btn rh-go" id="rGo" type="button">Hold to go</button>
           </div>
         </div>
@@ -429,8 +444,8 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
       </div>
       <p class="caption only-work" id="caption"></p>
       <div class="race-after only-race">
-        <div><button class="btn" id="rAuto" type="button" aria-pressed="false">Auto throttle: off</button></div>
-        <p class="caption">Hold GO or the space bar. Steer with the arrow keys or the on-screen arrows. The white dot on the bar shows the standard car.</p>
+        <div><button class="btn" id="rAuto" type="button" aria-pressed="false">Auto gears: off</button></div>
+        <p class="caption">Hold GO or the space bar. Shift up with the + paddle (right arrow or D) and down with the &minus; paddle (left arrow or A). The white dot on the bar is the standard car, driven by a computer with a 0.28 s reaction time that shifts at 95% of the rev limit.</p>
         <div class="rs-head"><span class="rs-t">Your design in this race</span><span class="rs-s">The same numbers as the wind tunnel. The race uses them directly.</span></div>
         <div class="results" id="rStats"></div>
         <div id="rDone" hidden>
@@ -440,6 +455,8 @@ h3 { margin: 0 0 10px; font: 600 13px/1 var(--display); letter-spacing: .2em; te
             <div><span class="l">Standard design</span><b id="rrStd">0.00</b><i>s</i></div>
             <div><span class="l">Your best</span><b id="rrBest">0.00</b><i>s</i></div>
             <div><span class="l">Design top speed</span><b id="rrPred">0</b><i>km/h</i></div>
+            <div><span class="l">Reaction</span><b id="rrReact">0.00</b><i>s</i></div>
+            <div><span class="l">Average shift point</span><b id="rrShift">0</b><i>% of limit</i></div>
           </div>
           <p id="rrMsg"></p>
           <div class="rr-go"><button class="btn go" id="rAgain" type="button">Race again</button><button class="btn" type="button" data-go="design">Change my design</button></div>
@@ -1733,24 +1750,49 @@ var rcMarks = [], rcFinishLine, rcGantry;
 })();
 var rcGhost = new THREE.Group(); rcGhost.visible = false; raceGroup.add(rcGhost);
 var RC = {
-  f1: { lane: 3.5, len: 800, hl: 3.0, L: 5.7, W: 2.0, H: 1.0, P: POWER, m: MASS, Fmax: null, mu: 1.5, crr: 0.015, brake: 16, camD: 8.6, camH: 2.5, spin: 40, unit: 100 },
-  evie: { lane: 1.8, len: 100, hl: 1.13, L: 2.26, W: 0.93, H: 0.6, P: EPW, m: EMASS, Fmax: 260, mu: 0.9, crr: EROLL, brake: 4, camD: 5.2, camH: 1.7, spin: 5, unit: 20 },
-  rd: { lane: 3.0, len: 120, hl: 2.2, L: 4.43, W: 1.9, H: 0.8, P: RPW, m: RMASS, Fmax: 220, mu: 0.9, crr: RROLL, brake: 4, camD: 8.2, camH: 2.3, spin: 5, unit: 24 }
+  f1: { lane: 3.5, len: 800, hl: 3.0, L: 5.7, W: 2.0, H: 1.0, P: POWER, m: MASS, Fmax: null, mu: 1.5, crr: 0.015, brake: 16, camD: 8.6, camH: 2.5, spin: 40, unit: 100, gears: 8, gTop: 360, gRatio: 0.80, shift: 0.06 },
+  evie: { lane: 1.8, len: 100, hl: 1.13, L: 2.26, W: 0.93, H: 0.6, P: EPW, m: EMASS, Fmax: 260, mu: 0.9, crr: EROLL, brake: 4, camD: 5.2, camH: 1.7, spin: 5, unit: 20, gears: 4, gTop: 36, gRatio: 0.69, shift: 0.15 },
+  rd: { lane: 3.0, len: 150, hl: 2.2, L: 4.43, W: 1.9, H: 0.8, P: RPW, m: RMASS, Fmax: 220, mu: 0.9, crr: RROLL, brake: 4, camD: 8.2, camH: 2.3, spin: 5, unit: 24, gears: 4, gTop: 36, gRatio: 0.69, shift: 0.15 }
 };
-var rc = { st: 'ready', t: 0, cd: 0, s: 0, v: 0, z: 3, vz: 0, top: 0, gs: 0, gv: 0, gTime: 0, you: null, P: null, GP: null, thr: false, L: false, R: false, auto: false, cam: new THREE.Vector3(), look: new THREE.Vector3() };
+var rc = { st: 'ready', t: 0, cd: 0, s: 0, v: 0, z: 3, vz: 0, top: 0, gs: 0, gv: 0, gTime: 0, you: null, P: null, GP: null, thr: false, auto: false, g: 1, sh: 0, gd: { g: 1, sh: 0 }, gt: 0, goAt: 3, react: null, lim: 0, bog: 0, shiftR: [], msgClear: 0, cam: new THREE.Vector3(), look: new THREE.Vector3() };
 function rcActive() { return CUR === 'f1' ? car : CUR === 'evie' ? evie : rd; }
 function rcPhys(mm) { var c = RC[CUR]; return { P: c.P, m: c.m, Fmax: c.Fmax, mu: c.mu, crr: c.crr, cdA: mm.cdA, clA: mm.clA || 0 }; }
-function rcAccel(P, v, thr, grass) {
-  var q = 0.5 * RHO * v * v, F = 0, cap;
-  if (thr) { F = P.P / Math.max(v, 0.5); cap = P.Fmax != null ? P.Fmax : P.mu * 0.6 * (P.m * G + 0.9 * q * P.clA); if (F > cap) F = cap; }
+var GREACT = 0.28;
+function rcVmax(c, g) { return c.gTop / 3.6 * Math.pow(c.gRatio, c.gears - g); }
+function rcPow(r) { if (r > 1) return 0; if (r >= 0.85) return 1 - 1.5 * (r - 0.85); var x = 0.85 - r; return Math.max(0.25, 1 - 3.0 * x * x / 0.7225); }
+function rcAccel(P, v, thr, grass, d) {
+  var c = RC[CUR], q = 0.5 * RHO * v * v, F = 0, cap, r;
+  if (thr && d.sh <= 0) {
+    r = v / rcVmax(c, d.g); r = Math.max(r, d.g === 1 ? 0.5 : 0.3);
+    F = P.P * rcPow(r) / Math.max(v, 0.5);
+    cap = P.Fmax != null ? P.Fmax : P.mu * 0.6 * (P.m * G + 0.9 * q * P.clA); if (F > cap) F = cap;
+  }
   return (F - q * P.cdA - P.crr * P.m * G * (grass ? 6 : 1)) / P.m;
 }
+function rcAuto(d, v, c, th) { if (d.sh <= 0 && d.g < c.gears && v / rcVmax(c, d.g) >= th) { d.g++; d.sh = c.shift; return true; } return false; }
 function rcSimTime(P, len) {
-  var v = 0, s = 0, t = 0, dt = 0.005;
-  while (s < len && t < 300) { v += rcAccel(P, v, true, false) * dt; if (v < 0) v = 0; s += v * dt; t += dt; }
+  var c = RC[CUR], d = { g: 1, sh: 0 }, v = 0, s = 0, t = 0, dt = 0.005;
+  while (s < len && t < 300) {
+    if (d.sh > 0) d.sh -= dt;
+    rcAuto(d, v, c, 0.95);
+    v += rcAccel(P, v, t >= GREACT, false, d) * dt; if (v < 0) v = 0; s += v * dt; t += dt;
+  }
   return t;
 }
-function rcBestKey() { return 'wtg-best-' + CUR; }
+function rcShift(dir) {
+  var c = RC[CUR];
+  if (rc.st === 'done') return;
+  if (dir > 0) {
+    if (rc.g >= c.gears) return;
+    if (rc.st === 'race') { rc.shiftR.push(Math.min(1.05, rc.v / rcVmax(c, rc.g))); rc.sh = c.shift; }
+    rc.g++;
+  } else {
+    if (rc.g <= 1) return;
+    if (rc.v > rcVmax(c, rc.g - 1)) { rcMsg('Too fast to drop a gear.', true, 1.2); return; }
+    rc.g--; if (rc.st === 'race') rc.sh = c.shift;
+  }
+}
+function rcBestKey() { return 'wtg-best-' + CUR + (rc.auto ? '-auto' : ''); }
 function rcPlace() {
   var c = RC[CUR], a = rcActive(), ghost = rcGhost;
   a.position.set(c.hl - rc.s, 0, rc.z);
@@ -1807,67 +1849,92 @@ function rcStats() {
     dn.innerHTML = '<div class="k">Downforce right now</div><div class="v"><span id="rsDown">0</span><small>kN</small></div><div class="d">grip grows with speed</div><div class="x">pressing the tyres into the tarmac</div>';
     box.appendChild(dn);
   }
+  var gb = document.createElement('div'); gb.className = 'tile';
+  gb.innerHTML = '<div class="k">Gearbox</div><div class="v"><span>' + c.gears + '</span><small>gears</small></div><div class="d">top gear runs out at ' + Math.round(c.gTop) + ' km/h</div><div class="x">shift up before the rev limiter</div>';
+  box.appendChild(gb);
   var cd = document.createElement('div'); cd.className = 'tile';
   cd.innerHTML = '<div class="k">Drag area (Cd\u00d7A)</div><div class="v"><span>' + nf(mm.cdA, 2) + '</span><small>m\u00b2</small></div><div class="d">' + (mm.cdA < sm.cdA - 0.005 ? 'lower than standard' : mm.cdA > sm.cdA + 0.005 ? 'higher than standard' : 'same as standard') + '</div><div class="x">used for every second of the race</div>';
   box.appendChild(cd);
   spBuild(mm.top, sm.top);
 }
-function rcMsg(t, warn) { var m = $('rMsg'); m.textContent = t; m.className = 'rh-msg' + (warn ? ' warn' : ''); }
+function rcMsg(t, warn, secs) { var m = $('rMsg'); m.textContent = t; m.className = 'rh-msg' + (warn ? ' warn' : ''); rc.msgClear = secs || 0; }
 function rcLights(n, green) {
   var els = $('rLights').children, i;
+  $('rLights').classList.remove('bad');
   for (i = 0; i < 3; i++) els[i].className = green ? 'g' : (i < n ? 'r' : '');
 }
 function rcReset() {
   var c = RC[CUR];
   rc.st = 'ready'; rc.t = 0; rc.cd = 0; rc.s = 0; rc.v = 0; rc.z = c.lane; rc.vz = 0; rc.top = 0; rc.gs = 0; rc.gv = 0; rc.you = null;
+  rc.g = 1; rc.sh = 0; rc.gd = { g: 1, sh: 0 }; rc.gt = 0; rc.react = null; rc.lim = 0; rc.shiftR = [];
   rc.P = rcPhys(calc(state)); rc.GP = rcPhys(calc(Object.assign({}, DEFAULTS)));
   rc.gTime = rcSimTime(rc.GP, c.len);
   rcSetup(); rcPlace(); rcLights(0, false); rcStats(); spSet(0);
   $('rDone').hidden = true; $('rStart').hidden = false; $('rLen').textContent = c.len;
   $('rGo').textContent = 'Hold to go';
-  rcMsg('Press Start race, then hold GO when the lights turn green.');
+  rcMsg('Press Start race. Hold GO the instant the light turns green.');
   rcSnapCamera();
 }
-function rcStart() { if (rc.st !== 'ready') rcReset(); rc.st = 'count'; rc.cd = 0; $('rStart').hidden = true; $('rDone').hidden = true; rcMsg(''); }
+function rcStart() { if (rc.st !== 'ready') rcReset(); rc.st = 'count'; rc.cd = 0; rc.goAt = 2.8 + Math.random() * 1.2; rcLights(0, false); $('rStart').hidden = true; $('rDone').hidden = true; rcMsg(''); }
 function rcSnapCamera() {
   var c = RC[CUR];
   rc.cam.set(c.hl - rc.s + c.camD, c.camH, rc.z * 0.5); rc.look.set(c.hl - rc.s - 8, c.camH * 0.25, rc.z * 0.5);
   camera.position.copy(rc.cam); camera.lookAt(rc.look); camera.fov = 55; camera.updateProjectionMatrix();
 }
 function rcFinish() {
-  var c = RC[CUR], you = rc.you, std = rc.gTime, d = std - you, best = null, newBest = false, mm = calc(state), sm = calc(Object.assign({}, DEFAULTS)), msg, dragCh;
+  var c = RC[CUR], you = rc.you, std = rc.gTime, d = std - you, best = null, newBest = false, mm = calc(state), sm = calc(Object.assign({}, DEFAULTS)), msg, dragCh, tD, dg, vg, avg = 0, n = rc.shiftR.length, sg = function (x) { return (x >= 0 ? '+' : '\u2212') + Math.abs(x).toFixed(2) + ' s'; };
   try { best = parseFloat(localStorage.getItem(rcBestKey())); if (!(best > 0)) best = null; if (best == null || you < best) { best = you; newBest = true; localStorage.setItem(rcBestKey(), String(best)); } } catch (e) { if (best == null) { best = you; newBest = true; } }
+  rc.shiftR.forEach(function (x) { avg += x; }); avg = n ? avg / n : 0;
   $('rrTime').textContent = you.toFixed(2); $('rrTop').textContent = Math.round(rc.top * 3.6); $('rrStd').textContent = std.toFixed(2); $('rrBest').textContent = best.toFixed(2); $('rrPred').textContent = Math.round(mm.top);
+  $('rrReact').textContent = rc.react == null ? '-' : rc.react.toFixed(2); $('rrShift').textContent = n ? Math.round(avg * 100) : '-';
   dragCh = Math.round((mm.cdA / sm.cdA - 1) * 100);
-  if (Math.abs(d) < 0.01) msg = 'Dead heat. Your design performs the same as the standard car.';
-  else if (d > 0) msg = 'Your design beat the standard car by ' + d.toFixed(2) + ' s. ' + (dragCh < 0 ? 'Its drag is ' + Math.abs(dragCh) + '% lower, so the air held it back less.' : 'Nice work.');
-  else msg = 'The standard car won by ' + Math.abs(d).toFixed(2) + ' s. ' + (dragCh > 0 ? 'Your design has ' + dragCh + '% more drag. Go back and see if you can cut it.' : 'Look at the wind tunnel numbers again and try another shape.');
+  tD = rcSimTime(rc.P, c.len); dg = std - tD; vg = tD - you;
+  if (Math.abs(d) < 0.01) msg = 'Dead heat with the standard car.';
+  else if (d > 0) msg = 'You beat the standard car by ' + d.toFixed(2) + ' s.';
+  else msg = 'The standard car won by ' + Math.abs(d).toFixed(2) + ' s.';
+  msg += ' Your design was worth ' + sg(dg) + (dragCh < 0 ? ' (drag ' + Math.abs(dragCh) + '% lower)' : dragCh > 0 ? ' (drag ' + dragCh + '% higher)' : '') + ' and your driving ' + sg(vg) + '.';
+  if (rc.react != null) msg += rc.react < 0.25 ? ' Superb reaction.' : rc.react < 0.45 ? ' Good reaction.' : ' Slow off the line, watch the light and be ready.';
+  if (n) msg += avg < 0.8 ? ' You changed up early, so the engine was out of its power band. Aim for about 90 to 100%.' : rc.lim > 0.15 ? ' You spent ' + rc.lim.toFixed(1) + ' s on the rev limiter. Shift a touch sooner.' : ' Shift points were well timed.';
+  if (rc.auto) msg += ' (Auto gears were on.)';
   if (newBest) msg += ' New best time!';
-  if (rc.top * 3.6 < mm.top * 0.97) msg += ' It reached ' + Math.round(rc.top * 3.6) + ' km/h, short of the ' + Math.round(mm.top) + ' km/h the wind tunnel predicts, because the track ends before it runs out of acceleration.';
+  if (rc.top * 3.6 < mm.top * 0.97) msg += ' It reached ' + Math.round(rc.top * 3.6) + ' km/h, short of the ' + Math.round(mm.top) + ' km/h the wind tunnel predicts, because the track ends first.';
   $('rrMsg').textContent = msg; $('rDone').hidden = false; rcMsg('Finished! ' + you.toFixed(2) + ' s');
 }
+function rcFalse() {
+  rc.st = 'ready'; rc.cd = 0; $('rStart').hidden = false; rcLights(3, false); $('rLights').classList.add('bad');
+  rcMsg('False start! You went before the green light. Press Start race to try again.', true);
+}
 function rcTick(h) {
-  var c = RC[CUR], steer, thr, a, vt, grass, gz;
+  var c = RC[CUR], thr, a, vm;
   if (rc.st === 'count') {
     rc.cd += h;
-    if (rc.cd >= 3.2) { rc.st = 'race'; rc.t = 0; rcLights(3, true); rcMsg('GO!'); }
+    if (rc.thr && rc.cd > 0.2) { rcFalse(); return; }
+    if (rc.cd >= rc.goAt) { rc.st = 'race'; rc.t = 0; rc.gt = 0; rc.react = null; rcLights(3, true); rcMsg('GO!', false, 1.2); }
     else rcLights(rc.cd > 2.4 ? 3 : rc.cd > 1.6 ? 2 : rc.cd > 0.8 ? 1 : 0, false);
     return;
   }
   if (rc.st !== 'race' && rc.st !== 'done') return;
-  /* standard-design ghost */
-  if (rc.gs < c.len + 120) { rc.gv += rcAccel(rc.GP, rc.gv, true, false) * h; if (rc.gv < 0) rc.gv = 0; rc.gs += rc.gv * h; }
-  grass = Math.abs(rc.z) > 19.5 - c.W / 2;
+  /* standard-design ghost: computer driver */
+  rc.gt += h;
+  if (rc.gs < c.len + 120) {
+    if (rc.gd.sh > 0) rc.gd.sh -= h;
+    rcAuto(rc.gd, rc.gv, c, 0.95);
+    rc.gv += rcAccel(rc.GP, rc.gv, rc.gt >= GREACT, false, rc.gd) * h; if (rc.gv < 0) rc.gv = 0; rc.gs += rc.gv * h;
+  }
   if (rc.st === 'race') {
-    rc.t += h; thr = rc.thr || rc.auto; steer = (rc.R ? 1 : 0) - (rc.L ? 1 : 0);
-    vt = -steer * Math.min(7, rc.v * 0.5);
-    rc.vz += (vt - rc.vz) * Math.min(1, 6 * h);
-    a = rcAccel(rc.P, rc.v, thr, grass) - 0.45 * Math.abs(rc.vz) * (rc.v > 0.5 ? 1 : 0);
+    rc.t += h; thr = rc.thr;
+    if (thr && rc.react == null) { rc.react = rc.t; rcMsg('Reaction ' + rc.react.toFixed(3) + ' s', false, 2.4); }
+    if (rc.sh > 0) rc.sh -= h;
+    vm = rcVmax(c, rc.g);
+    if (rc.auto && rc.sh <= 0 && rc.g < c.gears && rc.v / vm >= 0.96) rcShift(1);
+    if (thr && rc.sh <= 0 && rc.v / rcVmax(c, rc.g) > 1) rc.lim += h;
+    if (thr && rc.g > 1 && rc.sh <= 0 && rc.v / rcVmax(c, rc.g) < 0.3) { rc.bog += h; if (rc.bog > 1) { rcMsg('Engine bogged down. Drop a gear with the \u2212 paddle.', true, 1.5); rc.bog = 0; } } else rc.bog = 0;
+    a = rcAccel(rc.P, rc.v, thr, false, rc);
     rc.v = Math.max(0, rc.v + a * h);
   } else {
-    rc.vz *= 0.98; rc.v = Math.max(0, rc.v - c.brake * h);
+    rc.v = Math.max(0, rc.v - c.brake * h);
   }
-  rc.z = clamp(rc.z + rc.vz * h, -70, 70); rc.s += rc.v * h; if (rc.v > rc.top) rc.top = rc.v;
+  rc.s += rc.v * h; if (rc.v > rc.top) rc.top = rc.v;
   if (rc.st === 'race' && rc.s >= c.len) { rc.you = rc.t - (rc.s - c.len) / Math.max(rc.v, 0.1); rc.st = 'done'; rcFinish(); }
 }
 function raceFrame(dt) {
@@ -1893,10 +1960,16 @@ function raceFrame(dt) {
   $('rBar').style.width = Math.min(100, rc.s / c.len * 100) + '%';
   $('rGhost').style.left = Math.min(100, rc.gs / c.len * 100) + '%';
   $('rLights').style.opacity = (rc.st === 'race' && rc.t > 1.4) || rc.st === 'done' ? 0 : 1;
-  if (rc.st === 'race') {
-    if (Math.abs(rc.z) > 19.5 - c.W / 2) rcMsg('Off the runway! Steer back onto the tarmac.', true);
-    else if ($('rMsg').className.indexOf('warn') >= 0 || ($('rMsg').textContent === 'GO!' && rc.t > 1.2)) rcMsg('');
-  }
+  if (rc.msgClear > 0) { rc.msgClear -= dt; if (rc.msgClear <= 0) rcMsg(''); }
+  var vm = rcVmax(c, rc.g), r = rc.v / vm, rev = Math.min(1.02, r), top = rc.g >= c.gears, lim = rc.st === 'race' && rc.thr && rc.sh <= 0 && r > 1, shiftNow = false, k, ri = $('rRev').children, on;
+  if (rc.g === 1 && rc.thr && rc.st !== 'done') rev = Math.max(rev, 0.55); else rev = Math.max(rev, 0.15);
+  if (rc.st === 'done') rev = 0.15;
+  on = Math.round(Math.min(1, rev) * ri.length);
+  shiftNow = !top && rev >= 0.9 && rc.st === 'race';
+  for (k = 0; k < ri.length; k++) ri[k].className = (k < on ? 'on ' : '') + (k < 9 ? 'g' : k < 12 ? 'a' : 'r');
+  $('rRev').className = 'rev' + (lim ? ' lim' : shiftNow ? ' shift' : '');
+  $('rRevT').textContent = lim ? 'Rev limiter!' : (shiftNow && !rc.auto ? 'Shift up!' : '');
+  $('rGear').textContent = rc.g; $('rGears').textContent = c.gears;
 }
 function enterRace() {
   raceGroup.visible = true; scene.background = new THREE.Color(0x9cc7ee); scene.fog = new THREE.Fog(0xbcd6ea, 80, 1200);
@@ -1906,7 +1979,7 @@ function exitRace() {
   raceGroup.visible = false; scene.background = null; scene.fog = new THREE.Fog(0x0a0e13, 15, 30);
   camera.far = 60; camera.fov = 40; camera.updateProjectionMatrix();
   [car, evie, rd].forEach(function (g) { g.position.set(0, 0, 0); g.rotation.set(0, 0, 0); });
-  rc.st = 'ready'; rc.thr = rc.L = rc.R = false;
+  rc.st = 'ready'; rc.thr = false;
 }
 function bindHold(id, key) {
   var el = $(id);
@@ -1914,15 +1987,25 @@ function bindHold(id, key) {
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (ev) { el.addEventListener(ev, function () { rc[key] = false; el.classList.remove('on'); }); });
   el.addEventListener('contextmenu', function (e) { e.preventDefault(); });
 }
-bindHold('rGo', 'thr'); bindHold('rL', 'L'); bindHold('rR', 'R');
+bindHold('rGo', 'thr');
+function bindTap(id, dir) {
+  var el = $(id);
+  el.addEventListener('pointerdown', function (e) { e.preventDefault(); el.classList.add('on'); rcShift(dir); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (ev) { el.addEventListener(ev, function () { el.classList.remove('on'); }); });
+  el.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+}
+bindTap('rUp', 1); bindTap('rDn', -1);
+(function () { var h = '', i; for (i = 0; i < 14; i++) h += '<i></i>'; $('rRev').innerHTML = h; })();
 $('rStart').addEventListener('click', rcStart);
 $('rAgain').addEventListener('click', function () { rcReset(); rcStart(); });
-$('rAuto').addEventListener('click', function () { rc.auto = !rc.auto; $('rAuto').textContent = 'Auto throttle: ' + (rc.auto ? 'on' : 'off'); $('rAuto').setAttribute('aria-pressed', rc.auto ? 'true' : 'false'); });
-var RC_KEYS = { ' ': 'thr', ArrowUp: 'thr', w: 'thr', W: 'thr', ArrowLeft: 'L', a: 'L', A: 'L', ArrowRight: 'R', d: 'R', D: 'R' };
+$('rAuto').addEventListener('click', function () { rc.auto = !rc.auto; $('rAuto').textContent = 'Auto gears: ' + (rc.auto ? 'on' : 'off'); $('rAuto').setAttribute('aria-pressed', rc.auto ? 'true' : 'false'); });
+var RC_KEYS = { ' ': 'thr', ArrowUp: 'thr', w: 'thr', W: 'thr' }, RC_UP = { ArrowRight: 1, d: 1, D: 1, e: 1, E: 1 }, RC_DN = { ArrowLeft: 1, a: 1, A: 1, q: 1, Q: 1 };
 document.addEventListener('keydown', function (e) {
   if (mode !== 'race' || appEl.getAttribute('data-guide') === 'open') return;
   var k = RC_KEYS[e.key];
   if (k) { rc[k] = true; e.preventDefault(); }
+  else if (RC_UP[e.key]) { if (!e.repeat) rcShift(1); e.preventDefault(); }
+  else if (RC_DN[e.key]) { if (!e.repeat) rcShift(-1); e.preventDefault(); }
   else if (e.key === 'Enter' && rc.st === 'ready') { rcStart(); e.preventDefault(); }
 });
 document.addEventListener('keyup', function (e) { var k = RC_KEYS[e.key]; if (k) rc[k] = false; });
